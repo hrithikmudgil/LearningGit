@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/LearningGit/',
+  optimizeDeps: {
+    include: ['react-router-dom']
+  }
 })
