@@ -9,7 +9,7 @@ export default function Header(){
             <img src={logo} />
     
             <ul>
-                <Links item="Home" link="/home"/>
+                <Links item="Home" link="/"/>
                 <Links item="Services" link="/services"/>
             </ul>
 

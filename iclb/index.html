@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ICLB : Industrial Corridor Land Bank</title>
+    <link href="img/favicon.svg" rel="icon" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+    <div class="main">
+        <!--sidebar start-->
+        <div class="sidebar">
+            <div class="watermark">
+                <img src="img/NIC-watermap.png">
+            </div>
+            <div class="side-header">
+                <div class="d-flex gap-2 align-items-center">
+                    <img src="img/logo.svg" style="">
+                </div>
+                <a href="#!" class="sidebar-menu-icon d-md-none d-grid ms-3 me-0"><i class="fas fa-times"></i></a>
+            </div>
+            <div class="side-nav">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Select State</option>
+                    <option value="1">Delhi</option>
+                    <option value="2">Maharashtra</option>
+                    <option value="3">Andhra Pradesh</option>
+                </select>
+
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Select District</option>
+                    <option value="1">Delhi</option>
+                    <option value="2">Maharashtra</option>
+                    <option value="3">Andhra Pradesh</option>
+                </select>
+
+                <div class="filter-box">
+                    <label class="d-flex justify-content-between mb-3">Filter by land size <span class="fw-bold">10 acre</span></label>
+                    <input type="range" id="downPayment" min="0" max="20" value="10">
+                </div>
+                <button type="button" class="primary-btn w-100" id="search-btn">Search <span class="material-symbols-outlined ms-2">arrow_forward</span></button>
+
+
+
+                <div class="add-layers">
+                    <h4>Add Layers</h4>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    Core Infrastructure
+                                </button>
+                            </h2>
+                            <!--<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">-->
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body p-3">
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">rainy</span>
+                                                <h6>Rainfall</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">rainy_light</span>
+                                                <h6>Landslides /<br>earthquakes</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">flood</span>
+                                                <h6>Floodanes</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">elevation</span>
+                                                <h6>Elevation slop</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Connectivity
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">rainy</span>
+                                                <h6>Rainfall</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">rainy_light</span>
+                                                <h6>Landslides /<br>earthquakes</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">flood</span>
+                                                <h6>Floodanes</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">elevation</span>
+                                                <h6>Elevation slop</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Natural Risk
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">rainy</span>
+                                                <h6>Rainfall</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">rainy_light</span>
+                                                <h6>Landslides /<br>earthquakes</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">flood</span>
+                                                <h6>Floodanes</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">elevation</span>
+                                                <h6>Elevation slop</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Social Infrastructure
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">rainy</span>
+                                                <h6>Rainfall</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">rainy_light</span>
+                                                <h6>Landslides /<br>earthquakes</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">flood</span>
+                                                <h6>Floodanes</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="layer-inner-box">
+                                                <span class="material-symbols-outlined">elevation</span>
+                                                <h6>Elevation slop</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--sidebar end-->
+
+
+        <!--main body star-->
+        <div class="dashboard-body">
+            <div class="scale-number">
+                <p id="scaleBox">Scale 1 : 50,000</p>
+            </div>
+            <div class="basemap">
+                <div class="outer">
+                    <a href="javascript:void(0);">
+                        <img src="img/NIC_Street.png">
+                        <p class="mb-0">Layers</p>
+                    </a>
+                </div>
+                <div class="inner d-none">
+                    <ul>
+                        <li>
+                            <a href="">
+                                <img src="img/NIC_Street.png">
+                                <h6>NIC Street</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="img/NIC_Street.png">
+                                <h6>NIC Street</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="img/NIC_Street.png">
+                                <h6>NIC Street</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="img/NIC_Street.png">
+                                <h6>NIC Street</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="img/NIC_Street.png">
+                                <h6>NIC Street</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="img/NIC_Street.png">
+                                <h6>NIC Street</h6>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <ul class="bottom-tools">
+                <li>
+                    <a href="#!" class=""><span class="material-symbols-outlined">move</span> Buffer</a>
+                </li>
+                <li>
+                    <a href="#!" class=""><span class="material-symbols-outlined">radar</span> Proximity</a>
+                </li>
+                <li>
+                    <a href="#!" class=""><span class="material-symbols-outlined">format_list_bulleted</span> Spatial Data List</a>
+                </li>
+                <li>
+                    <a href="#!" class=""><span class="material-symbols-outlined">bia</span> Measure</a>
+                </li>
+                <li>
+                    <a href="#!" class=""><span class="material-symbols-outlined">help</span> Help</a>
+                </li>
+            </ul>
+
+            <div class="search-input">
+                <input type="text" placeholder="Search...">
+                <span class="material-symbols-outlined ms-2">search</span>
+            </div>
+            <div id="map" style="width:100%;height:100vh"></div>
+        </div>
+        <!--main body end-->
+
+
+        <!--park list sidebar start-->
+        <div class="parklist-sidebar">
+            <div class="d-flex justify-content-between mb-3">
+                <h5 class="text-secondary fw-normal">Showing Parks of <b class="text-black mx-1"> 10 acre </b> size</h5>
+                <a href="javascript:void(0)" class="float-end text-black close-parklist"><span class="material-symbols-outlined">close</span></a>
+            </div>
+            <ul class="p-0 list-unstyled d-flex gap-2 mb-4">
+                <li>
+                    <a href="#!" class="btn btn-sm btn-light px-3 fw-semibold rounded-pill" style="background: #D9D9D9">30 km</a>
+                </li>
+                <li>
+                    <a href="#!" class="btn btn-sm btn-light px-3 fw-semibold rounded-pill" style="background: #D9D9D9">70 km</a>
+                </li>
+                <li>
+                    <a href="#!" class="btn btn-sm btn-light px-3 fw-semibold rounded-pill" style="background: #D9D9D9">100 km</a>
+                </li>
+                <li>
+                    <a href="#!" class="btn btn-sm btn-light px-3 fw-semibold rounded-pill" style="background: #D9D9D9">200 km</a>
+                </li>
+            </ul>
+            <div class="row g-4">
+                <div class="col-6">
+                    <div class="park">
+                        <img src="img/park.png" class="w-100">
+                        <div class="park-details">
+                            <h6 class="text-center mb-0">Park Name 01</h6>
+                            <ul class="pt-3 mt-3 border-top p-0">
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park Size :</span><span class="fw-semibold">10 acre</span></li>
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park location :</span><span class="fw-semibold">dholera</span></li>
+                                <li class="d-flex justify-content-between text-white small"><span>Dummy Text : </span><span class="fw-semibold">0221</span></li>
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <a href="3d-tour.html" class="primary-btn tour">3D Tour</a>
+                                <a href="park-details.html" class="primary-btn more-details">More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="park">
+                        <img src="img/park2.png" class="w-100">
+                        <div class="park-details">
+                            <h6 class="text-center mb-0">Park Name 01</h6>
+                            <ul class="pt-3 mt-3 border-top p-0">
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park Size :</span><span class="fw-semibold">10 acre</span></li>
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park location :</span><span class="fw-semibold">dholera</span></li>
+                                <li class="d-flex justify-content-between text-white small"><span>Dummy Text : </span><span class="fw-semibold">0221</span></li>
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <a href="3d-tour.html" class="primary-btn tour">3D Tour</a>
+                                <a href="park-details.html" class="primary-btn more-details">More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="park">
+                        <img src="img/park3.png" class="w-100">
+                        <div class="park-details">
+                            <h6 class="text-center mb-0">Park Name 01</h6>
+                            <ul class="pt-3 mt-3 border-top p-0">
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park Size :</span><span class="fw-semibold">10 acre</span></li>
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park location :</span><span class="fw-semibold">dholera</span></li>
+                                <li class="d-flex justify-content-between text-white small"><span>Dummy Text : </span><span class="fw-semibold">0221</span></li>
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <a href="3d-tour.html" class="primary-btn tour">3D Tour</a>
+                                <a href="park-details.html" class="primary-btn more-details">More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="park">
+                        <img src="img/park4.png" class="w-100">
+                        <div class="park-details">
+                            <h6 class="text-center mb-0">Park Name 01</h6>
+                            <ul class="pt-3 mt-3 border-top p-0">
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park Size :</span><span class="fw-semibold">10 acre</span></li>
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park location :</span><span class="fw-semibold">dholera</span></li>
+                                <li class="d-flex justify-content-between text-white small"><span>Dummy Text : </span><span class="fw-semibold">0221</span></li>
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <a href="3d-tour.html" class="primary-btn tour">3D Tour</a>
+                                <a href="park-details.html" class="primary-btn more-details">More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="park">
+                        <img src="img/park5.png" class="w-100">
+                        <div class="park-details">
+                            <h6 class="text-center mb-0">Park Name 01</h6>
+                            <ul class="pt-3 mt-3 border-top p-0">
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park Size :</span><span class="fw-semibold">10 acre</span></li>
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park location :</span><span class="fw-semibold">dholera</span></li>
+                                <li class="d-flex justify-content-between text-white small"><span>Dummy Text : </span><span class="fw-semibold">0221</span></li>
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <a href="3d-tour.html" class="primary-btn tour">3D Tour</a>
+                                <a href="park-details.html" class="primary-btn more-details">More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="park">
+                        <img src="img/park6.png" class="w-100">
+                        <div class="park-details">
+                            <h6 class="text-center mb-0">Park Name 01</h6>
+                            <ul class="pt-3 mt-3 border-top p-0">
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park Size :</span><span class="fw-semibold">10 acre</span></li>
+                                <li class="d-flex justify-content-between text-white small mb-2"><span>Park location :</span><span class="fw-semibold">dholera</span></li>
+                                <li class="d-flex justify-content-between text-white small"><span>Dummy Text : </span><span class="fw-semibold">0221</span></li>
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <a href="3d-tour.html" class="primary-btn tour">3D Tour</a>
+                                <a href="park-details.html" class="primary-btn more-details">More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--park list sidebar end-->
+        
+        
+        <!--buffer popup start-->
+        <div class="rounded-3 shadow tool-popup" style="">
+        <div class="tool-header">
+            <span class="material-symbols-outlined float-end toolClose">close</span>
+            <span class="material-symbols-outlined float-end collapse-popup-btn px-2">expand_less</span>
+            <h4 class="menu-bottom-box-heading">
+                <span class="material-symbols-outlined">move</span>
+                Buffer
+            </h4>
+        </div>
+
+        <div class="tool-popup-body">
+            <div class="mb-3">
+                <select id="statedd" class="form-select">
+                    <option value="0">Select State</option> 
+                    <option value="1">ANDAMAN &amp; NICOBAR</option>
+                    <option value="2">ANDHRA PRADESH</option>
+                    <option value="3">ARUNACHAL PRADESH</option></select>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <select id="subdtdd" class="form-select" aria-label="Default select example"><option value="-1">Select District</option></select>
+            </div>
+            <div class="row g-2">
+                <div class="col-md-5">
+                <button type="button" class="primary-btn reset w-100">Reset</button>
+                </div>
+                <div class="col-md-7">
+                <button type="button" class="primary-btn w-100">Create Buffer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--buffer popup end-->
+
+    </div>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://js.arcgis.com/4.30/"></script>
+    <script>
+        $("#search-btn").on("click", function() {
+            $(".parklist-sidebar").addClass("show");
+        });
+        $(".close-parklist").on("click", function() {
+            $(".parklist-sidebar").removeClass("show");
+        });
+        $('input').on("change", function(){
+            $(".filter-box").find("span").text($(this).val() + " acre");
+        })
+    </script>
+    <script>
+        require(["esri/Map", "esri/views/MapView"], function(Map, MapView) {
+            const map = new Map({
+                basemap: "topo"
+            });
+            const view = new MapView({
+                map: map,
+                center: [75, 22],
+                zoom: 5,
+                container: "map"
+            });
+        });
+    </script>
+</body>
+
+</html>
